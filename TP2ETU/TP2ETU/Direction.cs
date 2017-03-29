@@ -8,7 +8,8 @@ namespace TP2PROF
 {
   // ppoulin
   // Complétez la déclaration du type énuméré Direction  
-  public enum Direction
+ //<AntoineRL>
+   public enum Direction
   {
     East,
     None,
@@ -17,5 +18,5 @@ namespace TP2PROF
     Undefined,
     West
   }
-
+  //</AntoineRL>
 }

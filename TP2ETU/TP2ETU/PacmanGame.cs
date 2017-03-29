@@ -129,26 +129,19 @@ namespace TP2PROF
 
               if (currentPosition == PacmanElement.Ghost)
               {
-
+                
               }
 
               else if (currentPosition == PacmanElement.Pacman)
               {
-
+              //<AntoineRL>
+                Pacman pacman = new Pacman(row, col);
+                grid.SetGridElementAt(row, col, PacmanElement.None);
+              //</AntoineRL>
               }
             }
           }
-            // Quand on en trouve un, on crée le fantôme (new Ghost(...)) correspondant
-            // et on l'enlève de la grille car dorénavant c'est l'objet de type Ghost
-            // qui gère le déplacement
-
-
-
-            // Ensuite, on crée le pacman à la position spécifiée par la grille.
-
-
-            // Puis, comme pour les fantômes, on le retire de la grille. 
-            // Sa position sera gérée par l'instance de la classe Pacman
+           
 
         }
       }
