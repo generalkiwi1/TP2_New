@@ -43,19 +43,21 @@ namespace TP2PROF
     /// Nombre de fantômes présents dans le jeu
     /// </summary>
     // A COMPLETER
+
     private const int NB_GHOSTS = 4;
 
     /// <summary>
     /// Les 4 fantômes du jeu
     /// </summary>
     // A COMPLETER
-    private Ghost[] ghosts = new Ghost[NB_GHOSTS]; // Mandat 1
+
+    private Ghost[] ghosts = new Ghost[NB_GHOSTS]; 
 
     /// <summary>
     /// Le pacman du jeu
     /// </summary>
     // A COMPLETER
-    private Pacman pacman = null; // Mandat 2
+    private Pacman pacman = null; 
 
     /// <summary>
     /// Durée d'activation d'une superpastille (en secondes)
@@ -132,25 +134,19 @@ namespace TP2PROF
               {
                 ghosts[ghostCpt]  = new Ghost(row,col);
                 ghostCpt++;
+
               }
 
               else if (currentPosition == PacmanElement.Pacman)
               {
-
+              //<AntoineRL>
+                Pacman pacman = new Pacman(row, col);
+                grid.SetGridElementAt(row, col, PacmanElement.None);
+              //</AntoineRL>
               }
             }
           }
-            // Quand on en trouve un, on crée le fantôme (new Ghost(...)) correspondant
-            // et on l'enlève de la grille car dorénavant c'est l'objet de type Ghost
-            // qui gère le déplacement
-
-
-
-            // Ensuite, on crée le pacman à la position spécifiée par la grille.
-
-
-            // Puis, comme pour les fantômes, on le retire de la grille. 
-            // Sa position sera gérée par l'instance de la classe Pacman
+           
 
         }
       }
@@ -287,6 +283,7 @@ namespace TP2PROF
           }
         }
       }
+
 
       // Les 4 fantômes
       for (int i = 0; i < NB_GHOSTS; i++)

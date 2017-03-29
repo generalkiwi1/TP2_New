@@ -21,17 +21,22 @@ namespace TP2PROF
     //<AntoineRL>
     public static int[,] InitCosts(Grid aGrid, int fromX, int fromY)
     {
-      int[,] tableauJeu = new int[PacmanGame.DEFAULT_GAME_HEIGHT, PacmanGame.DEFAULT_GAME_WIDTH];
-      for (int i = 0; i < PacmanGame.DEFAULT_GAME_HEIGHT; i++)
+      int[,] tableauJeu = new int[aGrid.Height, aGrid.Width];
+      for (int i = 0; i < tableauJeu.GetLength(0); i++)
       {
-        for (int j = 0; j < PacmanGame.DEFAULT_GAME_WIDTH; j++)
+        for (int j = 0; j < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH; j++)
         {
           tableauJeu[i, j] = int.MaxValue;
         }
       }
-      tableauJeu[fromX, fromY] = 0;
+      tableauJeu[fromY, fromX] = 0;
       return tableauJeu;
     }
+
+
+
+
+
 
     /// <summary>
     /// Détermine le premier déplacement nécessaire pour déplacer un objet de la position (fromX, fromY)
@@ -50,7 +55,7 @@ namespace TP2PROF
     public static Direction FindShortestPath(Grid aGrid, int fromX, int fromY, int toX, int toY)
     {
       int[,] distances = InitCosts(aGrid, fromX, fromY);
-      distances = ComputeCosts(aGrid, fromX, fromY, toX, toY, distances);
+      ComputeCosts(aGrid, fromX, fromY, toX, toY, distances);
       Direction directionChoisit = RecurseFindDirection(distances, toX, toY, fromX, fromY, aGrid);
       return directionChoisit;
 
@@ -64,8 +69,8 @@ namespace TP2PROF
     /// Calcule le nombre de déplacements requis pour aller de la position (fromX, fromY)
     /// vers la position (toX, toY). 
     /// <param name="aGrid">La grille du jeu: pour connaitre les positions des murs</param>
-    /// <param name="fromX">La position de départ en colonne</param>
-    /// <param name="fromY">La position de départ en ligne</param>
+    /// <param name="fromY">La position de départ en colonne</param>
+    /// <param name="fromX">La position de départ en ligne</param>
     /// <param name="toX">La position cible en colonne</param>
     /// <param name="toY">La position cible en ligne</param>
     /// <param name="costs">Le tableau des coûts à remplir</param>
@@ -74,48 +79,63 @@ namespace TP2PROF
     /// <remark>Cette méthode est récursive</remark>
     /// </summary>
     // A COMPLÉTER  Méthode ComputeCosts
-    public static int[,] ComputeCosts(Grid aGrid, int fromX, int fromY, int toX, int toY, int[,] costs)
+    public static void ComputeCosts(Grid aGrid, int fromX, int fromY, int toX, int toY, int[,] costs)
     {
       //costs = InitCosts(aGrid, fromX, fromY);
-      if (fromX == toX && fromY == toY)
+      if (fromY == toY && fromX == toX)
       {
-        return costs;
+        return;
       }
       else
       {
-        if ((fromX > 0 && fromX < PacmanGame.DEFAULT_GAME_WIDTH) && (fromY - 1 > 0 && fromY - 1 < PacmanGame.DEFAULT_GAME_HEIGHT))
+        if (fromX-1 > 0)
         {
-          if (costs[fromX, fromY] + 1 < costs[fromX, fromY - 1])
+          if (aGrid.GetGridElementAt(fromY, fromX - 1) != PacmanElement.Wall)
           {
-            costs[fromX, fromY - 1] = (costs[fromX, fromY - 1]) + 1;
+            if (costs[fromY, fromX] + 1 < costs[fromY, fromX - 1])
+            {
+              costs[fromY, fromX - 1] = (costs[fromY, fromX]) + 1;
+              ComputeCosts(aGrid, fromX-1, fromY, toX, toY, costs);
+            }
           }
-          return ComputeCosts(aGrid, fromX - 1, fromY, toX, toY, costs);
+          
         }
-        if ((fromX - 1 > 0 && fromX - 1 < PacmanGame.DEFAULT_GAME_WIDTH) && (fromY > 0 && fromY < PacmanGame.DEFAULT_GAME_HEIGHT))
+        if (fromY-1>0)
         {
-          if (costs[fromX, fromY] + 1 < costs[fromX - 1, fromY])
+          if (aGrid.GetGridElementAt(fromY - 1, fromX) != PacmanElement.Wall)
           {
-            costs[fromX - 1, fromY] = (costs[fromX - 1, fromY]) + 1;
+            if (costs[fromY, fromX] + 1 < costs[fromY - 1, fromX])
+            {
+              costs[fromY - 1, fromX] = (costs[fromY, fromX]) + 1;
+              ComputeCosts(aGrid, fromX, fromY-1, toX, toY, costs);
+            }
           }
-          return ComputeCosts(aGrid, fromX, fromY + 1, toX, toY, costs);
+          
         }
-        if ((fromX > 0 && fromX < PacmanGame.DEFAULT_GAME_WIDTH) && (fromY + 1 > 0 && fromY + 1 < PacmanGame.DEFAULT_GAME_HEIGHT))
+        if (fromX+1<aGrid.Width)
         {
-          if (costs[fromX, fromY] + 1 < costs[fromX, fromY + 1])
+          if (aGrid.GetGridElementAt(fromY, fromX + 1) != PacmanElement.Wall)
           {
-            costs[fromX, fromY + 1] = (costs[fromX, fromY + 1]) + 1;
+            if (costs[fromY, fromX] + 1 < costs[fromY, fromX + 1])
+            {
+              costs[fromY, fromX + 1] = (costs[fromY, fromX]) + 1;
+              ComputeCosts(aGrid, fromX+1, fromY, toX, toY, costs);
+            }
           }
-          return ComputeCosts(aGrid, fromX + 1, fromY, toX, toY, costs);
+          
         }
-        if ((fromX + 1 > 0 && fromX + 1 < PacmanGame.DEFAULT_GAME_WIDTH) && (fromY > 0 && fromY < PacmanGame.DEFAULT_GAME_HEIGHT))
+        if (fromY + 1 < aGrid.Height)
         {
-          if (costs[fromX, fromY] + 1 < costs[fromX + 1, fromY])
+          if (aGrid.GetGridElementAt(fromY + 1, fromX) != PacmanElement.Wall)
           {
-            costs[fromX + 1, fromY] = (costs[fromX + 1, fromY]) - 1;
+            if (costs[fromY, fromX] + 1 < costs[fromY + 1, fromX])
+            {
+              costs[fromY + 1, fromX] = (costs[fromY, fromX]) + 1;
+              ComputeCosts(aGrid,  fromX, fromY+1,toX, toY, costs);
+            }
           }
-          return ComputeCosts(aGrid, fromX + 1, fromY, toX, toY, costs);
+
         }
-        return costs;
       }
     }
 
@@ -137,9 +157,8 @@ namespace TP2PROF
     //<Mika>
     public static Direction RecurseFindDirection(int[,] costs, int targetX, int targetY, int fromX, int fromY, Grid aGrid)
     {
-      costs = ComputeCosts(aGrid, fromX, fromY, targetX, targetY, costs);
       Direction directionCourante = Direction.Undefined;
-      if (costs[targetX, targetY - 1] == (costs[targetX, targetY] - 1) && (targetY - 1 > 1))
+      if (costs[targetX, targetY - 1] == ((costs[targetX, targetY] - 1)))
       {
         if (costs[targetX, targetY - 1] == costs[fromX, fromY])
         {
@@ -151,7 +170,7 @@ namespace TP2PROF
           return FindShortestPath(aGrid, targetX, targetY - 1, fromX, fromY);
         }
       }
-      else if (costs[targetX - 1, targetY] == (costs[targetX, targetY] - 1) && (targetX - 1 > 1))
+      else if (costs[targetX - 1, targetY] == ((costs[targetX, targetY] - 1)))
       {
         if (costs[targetX - 1, targetY] == costs[fromX, fromY])
         {
@@ -163,7 +182,7 @@ namespace TP2PROF
           return FindShortestPath(aGrid, targetX - 1, targetY, fromX, fromY);
         }
       }
-      else if (costs[targetX, targetY + 1] == (costs[targetX, targetY] - 1) && (targetY + 1 < PacmanGame.DEFAULT_GAME_HEIGHT-1))
+      else if (costs[targetX, targetY + 1] == ((costs[targetX, targetY] - 1)))
       {
         if (costs[targetX, targetY + 1] == costs[fromX, fromY])
         {
@@ -175,7 +194,7 @@ namespace TP2PROF
           return FindShortestPath(aGrid, targetX, targetY + 1, fromX, fromY);
         }
       }
-      else if (costs[targetX + 1, targetY] == (costs[targetX, targetY] - 1) && (targetX + 1 < PacmanGame.DEFAULT_GAME_WIDTH - 1))
+      else if (costs[targetX + 1, targetY] == ((costs[targetX, targetY] - 1)))
       {
         if (costs[targetX + 1, targetY] == costs[fromX, fromY])
         {

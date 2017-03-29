@@ -9,6 +9,7 @@ namespace TP2PROF
 {
   public class Pacman
   {
+  //<AntoineRL>
     /// <summary>
     /// Position du pacman
     /// </summary>
@@ -71,7 +72,7 @@ namespace TP2PROF
     // A COMPLETER MÉTHODE MOVE
     public void Move(Direction direction, Grid grid)
     {
-      if (Column + 1 > 0 && Column + 1 < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH)
+      if (Column + 1 > 0 && Column + 1 < PacmanGame.DEFAULT_GAME_WIDTH)
       {
         if (grid.PacmanOriginalPositionColumn + 1 != 1 && grid.PacmanOriginalPositionColumn + 1 != 6)
         {
@@ -81,7 +82,7 @@ namespace TP2PROF
           }
         }
       }
-      if (Column - 1 > 0 && Column - 1 < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH)
+      if (Column - 1 > 0 && Column - 1 < PacmanGame.DEFAULT_GAME_WIDTH)
       {
         if (grid.PacmanOriginalPositionColumn - 1 != 1 && grid.PacmanOriginalPositionColumn - 1 != 6)
         {
@@ -91,7 +92,7 @@ namespace TP2PROF
           }
         }
       }
-      if (Row + 1 > 0 && Row + 1 < PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT)
+      if (Row + 1 > 0 && Row + 1 < PacmanGame.DEFAULT_GAME_HEIGHT)
       {
         if (grid.PacmanOriginalPositionRow + 1 != 1 && grid.PacmanOriginalPositionRow + 1 != 6)
           if (direction == Direction.South)
@@ -99,7 +100,7 @@ namespace TP2PROF
             Row++;
           }
       }
-      if (Row - 1 > 0 && Row - 1 < PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT)
+      if (Row - 1 > 0 && Row - 1 < PacmanGame.DEFAULT_GAME_HEIGHT)
       {
         if (grid.PacmanOriginalPositionRow - 1 != 1 && grid.PacmanOriginalPositionRow - 1 != 6)
         {
@@ -124,8 +125,8 @@ namespace TP2PROF
       // ppoulin
       // A décommenter lorsqu'il sera possible d'accéder aux propriétés Column et Row
       // du pacman  
-      // pacmanSprite.Position = new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH* Column , 
-      //                                      PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT*Row )+ pacmanSprite.Origin;
+       pacmanSprite.Position = new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH* Column , 
+                                            PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT*Row )+ pacmanSprite.Origin;
       window.Draw(pacmanSprite);
     }
   }
