@@ -72,7 +72,7 @@ namespace TP2PROF
     // A COMPLETER MÉTHODE MOVE
     public void Move(Direction direction, Grid grid)
     {
-      if (Column + 1 > 0 && Column + 1 < PacmanGame.DEFAULT_GAME_WIDTH)
+      if (Column + 1<grid.Width)
       {
         if (grid.PacmanOriginalPositionColumn + 1 != 1 && grid.PacmanOriginalPositionColumn + 1 != 6)
         {
@@ -82,7 +82,7 @@ namespace TP2PROF
           }
         }
       }
-      if (Column - 1 > 0 && Column - 1 < PacmanGame.DEFAULT_GAME_WIDTH)
+      if (Column - 1 > 0)
       {
         if (grid.PacmanOriginalPositionColumn - 1 != 1 && grid.PacmanOriginalPositionColumn - 1 != 6)
         {
@@ -92,7 +92,7 @@ namespace TP2PROF
           }
         }
       }
-      if (Row + 1 > 0 && Row + 1 < PacmanGame.DEFAULT_GAME_HEIGHT)
+      if (Row + 1<grid.Height)
       {
         if (grid.PacmanOriginalPositionRow + 1 != 1 && grid.PacmanOriginalPositionRow + 1 != 6)
           if (direction == Direction.South)
