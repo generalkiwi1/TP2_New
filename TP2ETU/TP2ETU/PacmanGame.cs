@@ -134,6 +134,7 @@ namespace TP2PROF
               {
                 ghosts[ghostCpt]  = new Ghost(row,col);
                 ghostCpt++;
+                grid.SetGridElementAt(row, col, PacmanElement.None);
 
               }
 
