@@ -51,13 +51,13 @@ namespace TP2Tests
       Grid aGrid = new Grid();
       int fromX = 4;
       int fromY = 4;
-      int[,] tabJeu = new int[PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT, PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH];
+      int[,] tabJeu = new int[PacmanGame.DEFAULT_GAME_HEIGHT, PacmanGame.DEFAULT_GAME_WIDTH];
       // Appel de la méthode à tester
       tabJeu = PathFinder.InitCosts(aGrid, fromX, fromY);
       // Validations
-      for (int i = 0; i < PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT; i++)
+      for (int i = 0; i < PacmanGame.DEFAULT_GAME_HEIGHT; i++)
       {
-        for (int j = 0; j < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH; j++)
+        for (int j = 0; j < PacmanGame.DEFAULT_GAME_WIDTH; j++)
         {
           if (j == fromX && i == fromY)
           {
@@ -89,35 +89,35 @@ namespace TP2Tests
       int fromY = 4;
       int toX = 3;
       int toY = 6;
-      int[,] costs = new int[PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT, PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH];
+      int[,] costs = new int[PacmanGame.DEFAULT_GAME_HEIGHT, PacmanGame.DEFAULT_GAME_WIDTH];
       // Appel de la méthode à tester
       costs = PathFinder.InitCosts(aGrid, fromX, fromY);
       costs = PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
 
       // Validations
       // Chemins existants
-      if ((fromX > 0 && fromX < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH) && (fromY - 1 > 0 && fromY - 1 < PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT))
+      if ((fromX > 0 && fromX < PacmanGame.DEFAULT_GAME_WIDTH) && (fromY - 1 > 0 && fromY - 1 < PacmanGame.DEFAULT_GAME_HEIGHT))
       {
         if (costs[fromX, fromY] + 1 < costs[fromX, fromY - 1])
         {
           Assert.AreEqual((costs[fromX, fromY - 1]) + 1, costs[fromX, fromY - 1]);
         }
       }
-      if ((fromX - 1 > 0 && fromX - 1 < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH) && (fromY > 0 && fromY < PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT))
+      if ((fromX - 1 > 0 && fromX - 1 < PacmanGame.DEFAULT_GAME_WIDTH) && (fromY > 0 && fromY < PacmanGame.DEFAULT_GAME_HEIGHT))
       {
         if (costs[fromX, fromY] + 1 < costs[fromX - 1, fromY])
         {
           Assert.AreEqual((costs[fromX - 1, fromY]) + 1, costs[fromX - 1, fromY]);
         }
       }
-      if ((fromX > 0 && fromX < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH) && (fromY + 1 > 0 && fromY + 1 < PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT))
+      if ((fromX > 0 && fromX < PacmanGame.DEFAULT_GAME_WIDTH) && (fromY + 1 > 0 && fromY + 1 < PacmanGame.DEFAULT_GAME_HEIGHT))
       {
         if (costs[fromX, fromY] + 1 < costs[fromX, fromY + 1])
         {
           Assert.AreEqual((costs[fromX, fromY + 1]) + 1, costs[fromX, fromY + 1]);
         }
       }
-      if ((fromX + 1 > 0 && fromX + 1 < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH) && (fromY > 0 && fromY < PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT))
+      if ((fromX + 1 > 0 && fromX + 1 < PacmanGame.DEFAULT_GAME_WIDTH) && (fromY > 0 && fromY < PacmanGame.DEFAULT_GAME_HEIGHT))
       {
         if (costs[fromX, fromY] + 1 < costs[fromX + 1, fromY])
         {

@@ -13,23 +13,23 @@ namespace TP2Tests
   {
 // ppoulin
 // A DECOMMENTER LORSQUE LE CODE AURA ÉTÉ PRODUIT    
-//    /// <summary>
-//    /// Teste la création d'un fantôme
-//    /// </summary>
-//    [TestMethod]
-//    public void TestConstructeur01()
-//    {
-//      // Mise en place des données
-//      // Appel de la méthode à tester
-//      Ghost ghost = new Ghost(20, 10);
+    /// <summary>
+    /// Teste la création d'un fantôme
+    /// </summary>
+    [TestMethod]
+    public void TestConstructeur01()
+    {
+      // Mise en place des données
+      // Appel de la méthode à tester
+      Ghost ghost = new Ghost(20, 10);
 
-//      // Validation des résultats
-//      Assert.AreEqual(10, ghost.Column);
-//      Assert.AreEqual(20, ghost.Row);
-//      // Clean-up
-//    }
+      // Validation des résultats
+      Assert.AreEqual(10, ghost.Column);
+      Assert.AreEqual(20, ghost.Row);
+      // Clean-up
+    }
 
-//    const string VALID_LEVEL_01 = @"
+    const string VALID_LEVEL_01 = @"
 //1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
 //1,1,0,4,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,1,1;
 //1,1,5,1,1,4,1,1,1,4,1,4,1,1,1,4,1,1,5,1,1;
@@ -53,63 +53,57 @@ namespace TP2Tests
 //1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,1;
 //1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1";
 
-//    /// <summary>
-//    /// Teste le déplacement invalide du fantôme vers la droite
-//    /// </summary>
-//    [TestMethod]
-//    public void TestMoveInvalid01()
-//    {
-//      // Mise en place des données      
-//      Grid grid = new Grid();
-//      grid.LoadFromMemory(VALID_LEVEL_01);
-//      Ghost ghost = new Ghost(1,18 );
-
-//      // Appel de la méthode à tester
-//      ghost.Move(Direction.East, grid);
-
-//      // Validation des résultats
-//      Assert.AreEqual(1, ghost.Row);
-//      Assert.AreEqual(18, ghost.Column);
-//      // Clean-up
-//    }
-//    /// <summary>
-//    /// Teste le déplacement invalide du fantôme vers le haut
-//    /// </summary>
-//    [TestMethod]
-//    public void TestMoveInvalid02()
-//    {
-//      // Mise en place des données      
-//      Grid grid = new Grid();
-//      grid.LoadFromMemory(VALID_LEVEL_01);
-//      Ghost ghost = new Ghost(1, 18);
-
-//      // Appel de la méthode à tester
-//      ghost.Move(Direction.North, grid);
-
-//      // Validation des résultats
-//      Assert.AreEqual(1, ghost.Row);
-//      Assert.AreEqual(18, ghost.Column);
-//      // Clean-up
-//    }
-//    /// <summary>
-//    /// Teste le déplacement invalide du fantôme vers le bas
-//    /// </summary>
-//    [TestMethod]
-//    public void TestMoveInvalid03()
-//    {
-//      // Mise en place des données      
-//      Grid grid = new Grid();
-//      grid.LoadFromMemory(VALID_LEVEL_01);
-//      Ghost ghost = new Ghost(20, 3);
-
-//      // Appel de la méthode à tester
-//      ghost.Move(Direction.South, grid);
-
-//      // Validation des résultats
-//      Assert.AreEqual(20, ghost.Row);
-//      Assert.AreEqual(3, ghost.Column);
-//      // Clean-up
-//    }
+    /// <summary>
+    /// Teste le déplacement invalide du fantôme vers la droite
+    /// </summary>
+    [TestMethod]
+    public void TestMoveInvalid01()
+    {
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      Ghost ghost = new Ghost(1,18 );
+      // Appel de la méthode à tester
+      ghost.Move(Direction.East, grid);
+      // Validation des résultats
+      Assert.AreEqual(1, ghost.Row);
+      Assert.AreEqual(18, ghost.Column);
+      // Clean-up
+    }
+    /// <summary>
+    /// Teste le déplacement invalide du fantôme vers le haut
+    /// </summary>
+    [TestMethod]
+    public void TestMoveInvalid02()
+    {
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      Ghost ghost = new Ghost(1, 18);
+      // Appel de la méthode à tester
+      ghost.Move(Direction.North, grid);
+      // Validation des résultats
+      Assert.AreEqual(1, ghost.Row);
+      Assert.AreEqual(18, ghost.Column);
+      // Clean-up
+    }
+    /// <summary>
+    /// Teste le déplacement invalide du fantôme vers le bas
+    /// </summary>
+    [TestMethod]
+    public void TestMoveInvalid03()
+    {
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      Ghost ghost = new Ghost(20, 3);
+      // Appel de la méthode à tester
+      ghost.Move(Direction.South, grid);
+      // Validation des résultats
+      Assert.AreEqual(20, ghost.Row);
+      Assert.AreEqual(3, ghost.Column);
+      // Clean-up
+    }
     
 
     /// <summary>

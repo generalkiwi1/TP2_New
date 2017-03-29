@@ -22,10 +22,12 @@ namespace TP2PROF
     public int Column
     {
       get
-      { return position.X; }
+      {
+        return position.Y; 
+      }
       set
       {
-        position.X = value;
+        position.Y = value;
       }
     }
 
@@ -36,10 +38,12 @@ namespace TP2PROF
     public int Row
     {
       get
-      { return position.Y; }
+      { 
+        return position.X;
+      }
       set
       {
-        position.Y = value;
+        position.X = value;
       }
     }
 
@@ -104,12 +108,15 @@ namespace TP2PROF
         throw new ArgumentOutOfRangeException("row");
       else if (column <= 0 || column >= PacmanGame.DEFAULT_GAME_WIDTH)
         throw new ArgumentOutOfRangeException("column");
-
-
+      else 
+      {
+        Column = column;
+        Row = row;
+      }
 
       // Affectation de la propriété ghostId.
       // Quelle serait la meilleure "valeur" à affecter ici???
-
+      ghostId = nbGhostCreated;
 
       // Incrémenter ici la propriété servant à compter le nombre de fantômes créés
       // jusqu'à date
@@ -126,7 +133,45 @@ namespace TP2PROF
     /// <param name="direction">Direction dans laquelle on veut déplacer le fantôme</param>
     /// <param name="grid">Grille de référence. Utilisée pour ne pas que le fantôme passe au travers des murs</param>
     // A COMPLETER MÉTHODE MOVE
+    public void Move(Direction direction, Grid grid)
+    {
+      if (direction == Direction.East)
+      {
+        if (grid.GetGridElementAt(Row, Column + 1) == PacmanElement.Wall)
+        {
 
+        }
+        else
+          Row = position.X + 1;
+      }
+      else if (direction == Direction.North)
+      {
+        if (grid.GetGridElementAt(Row - 1, Column ) == PacmanElement.Wall)
+        {
+
+        }
+        else
+          Column = position.Y - 1;
+      }
+      else if (direction == Direction.West)
+      {
+        if (grid.GetGridElementAt(Row, Column - 1) == PacmanElement.Wall)
+        {
+
+        }
+        else
+          Row = position.X - 1;
+      }
+      else if (direction == Direction.South)
+      {
+        if (grid.GetGridElementAt(Row + 1, Column ) == PacmanElement.Wall)
+        {
+
+        }
+        else
+          Column = position.Y + 1;
+      }
+    }
 
     /// <summary>
     /// Affiche le fantôme dans la fenêtre de rendu.
@@ -152,9 +197,9 @@ namespace TP2PROF
       // ppoulin
       // A décommenter lorsqu'il sera possible d'accéder aux propriétés Column et Row
       // du fantôme
-      //ghostSprite.Position =    new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH * Column , 
-      //                                    PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT * Row ) 
-      //                       +  ghostSprite.Origin;
+     ghostSprite.Position =    new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH * Column , 
+                                         PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT * Row ) 
+                            +  ghostSprite.Origin;
       window.Draw(ghostSprite);
     }
 
@@ -168,6 +213,11 @@ namespace TP2PROF
     {
       // ppoulin
       // A compléter 
+      if (isSuperPillActive)
+      {
+        
+      }
+
 
     }
   }

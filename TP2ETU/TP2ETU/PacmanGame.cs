@@ -43,13 +43,13 @@ namespace TP2PROF
     /// Nombre de fantômes présents dans le jeu
     /// </summary>
     // A COMPLETER
-    private const int NB_GHOST = 4;
+    private const int NB_GHOSTS = 4;
 
     /// <summary>
     /// Les 4 fantômes du jeu
     /// </summary>
     // A COMPLETER
-    private Ghost[] ghosts = null; // Mandat 1
+    private Ghost[] ghosts = new Ghost[NB_GHOSTS]; // Mandat 1
 
     /// <summary>
     /// Le pacman du jeu
@@ -120,6 +120,7 @@ namespace TP2PROF
         {
           // On parcourt la grille et, avec la méthode GetGridElementAt // Besoin de ton avis ici
           // On trouve les positions où il y a des fantômes
+          int ghostCpt = 0;
 
           for (int row = 0; row < grid.Height; row++)
           {
@@ -129,7 +130,8 @@ namespace TP2PROF
 
               if (currentPosition == PacmanElement.Ghost)
               {
-
+                ghosts[ghostCpt]  = new Ghost(row,col);
+                ghostCpt++;
               }
 
               else if (currentPosition == PacmanElement.Pacman)
@@ -194,7 +196,10 @@ namespace TP2PROF
 
       // Mise à jour des fantômes
       // A COMPLETER    
-
+      //for (int i = 0; i < ghosts.Length; i++)
+     // {
+        // ghosts[i].Update(grid,pacmanPosition, isSuperPillActive);
+     // }
 
 
 
@@ -283,12 +288,12 @@ namespace TP2PROF
         }
       }
 
-      //// Les 4 fantômes
-      //for (int i = 0; i < NB_GHOSTS; i++)
-      //{
-      //  if (ghosts[i] != null)
-      //    ghosts[i].Draw(window, SuperPillActive);
-      //}
+      // Les 4 fantômes
+      for (int i = 0; i < NB_GHOSTS; i++)
+      {
+        if (ghosts[i] != null)
+          ghosts[i].Draw(window, SuperPillActive);
+      }
 
       //// Le pacman
       //if (null != pacman)
