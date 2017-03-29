@@ -50,8 +50,8 @@ namespace TP2PROF
       // Ne pas oublier de lancer une exception si les paramètres sont invalides
       try
       {
-        row = this.Row;
-        column = this.Column;
+        Row = row;
+        Column = column;
       }
       catch (FormatException exception)
       {
