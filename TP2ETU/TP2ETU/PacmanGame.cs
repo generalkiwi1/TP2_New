@@ -164,25 +164,33 @@ namespace TP2PROF
     /// mangé par un fantôme</returns>
     public EndGameResult Update(Keyboard.Key key)
     {
-      
-      
+      //<AntoineRL>
+      Pacman pacman = new Pacman(10, 10);
+      Grid grid = new Grid();
+
       // Déplacement du joueur
       if (key == Keyboard.Key.Left)
       {
-        // A COMPLETER      
+        // A COMPLETER 
+        pacman.Move(Direction.East, grid);
       }
       else if (key == Keyboard.Key.Right)
       {
-        // A COMPLETER    
+        // A COMPLETER
+        pacman.Move(Direction.West, grid);
       }
       else if (key == Keyboard.Key.Up)
       {
-        // A COMPLETER    
+        // A COMPLETER
+        pacman.Move(Direction.North, grid);
       }
       else if (key == Keyboard.Key.Down)
       {
-        // A COMPLETER    
+        // A COMPLETER
+        pacman.Move(Direction.South, grid);
       }
+      //</AntoineRL>
+
 
       // Mise à jour des fantômes
       // A COMPLETER    
