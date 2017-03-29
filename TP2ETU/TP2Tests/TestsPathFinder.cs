@@ -51,13 +51,13 @@ namespace TP2Tests
       Grid aGrid = new Grid();
       int fromX = 4;
       int fromY = 4;
-      int[,] tabJeu = new int[PacmanGame.DEFAULT_GAME_HEIGHT, PacmanGame.DEFAULT_GAME_WIDTH];
+      int[,] tabJeu = new int[aGrid.Height, aGrid.Width];
       // Appel de la méthode à tester
       tabJeu = PathFinder.InitCosts(aGrid, fromX, fromY);
       // Validations
-      for (int i = 0; i < PacmanGame.DEFAULT_GAME_HEIGHT; i++)
+      for (int i = 0; i < tabJeu.GetLength(0); i++)
       {
-        for (int j = 0; j < PacmanGame.DEFAULT_GAME_WIDTH; j++)
+        for (int j = 0; j < tabJeu.GetLength(1); j++)
         {
           if (j == fromX && i == fromY)
           {
