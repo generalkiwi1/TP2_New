@@ -24,7 +24,7 @@ namespace TP2PROF
       int[,] tableauJeu = new int[aGrid.Height, aGrid.Width];
       for (int i = 0; i < tableauJeu.GetLength(0); i++)
       {
-        for (int j = 0; j < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH; j++)
+        for (int j = 0; j < tableauJeu.GetLength(1); j++)
         {
           tableauJeu[i, j] = int.MaxValue;
         }
