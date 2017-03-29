@@ -50,8 +50,8 @@ namespace TP2PROF
       // Ne pas oublier de lancer une exception si les paramètres sont invalides
       try
       {
-        row = this.Row;
-        column = this.Column;
+        Row = row;
+        Column = column;
       }
       catch (FormatException exception)
       {
@@ -100,7 +100,7 @@ namespace TP2PROF
             Row++;
           }
       }
-      if (Row - 1 > 0 && Row - 1 < PacmanGame.DEFAULT_GAME_HEIGHT)
+      if (Row - 1 > 0)
       {
         if (grid.PacmanOriginalPositionRow - 1 != 1 && grid.PacmanOriginalPositionRow - 1 != 6)
         {

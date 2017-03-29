@@ -141,7 +141,7 @@ namespace TP2PROF
               else if (currentPosition == PacmanElement.Pacman)
               {
               //<AntoineRL>
-                Pacman pacman = new Pacman(row, col);
+                pacman = new Pacman(row, col);
                 grid.SetGridElementAt(row, col, PacmanElement.None);
               //</AntoineRL>
               }
@@ -293,9 +293,9 @@ namespace TP2PROF
           ghosts[i].Draw(window, SuperPillActive);
       }
 
-      //// Le pacman
-      //if (null != pacman)
-      //  pacman.Draw(window);
+      // Le pacman
+      if (null != pacman)
+        pacman.Draw(window);
         
     }
   }
