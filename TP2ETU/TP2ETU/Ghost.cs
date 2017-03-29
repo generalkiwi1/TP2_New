@@ -100,7 +100,10 @@ namespace TP2PROF
     {
       // Affectation de la position du fantôme  
       // Ne pas oublier de lancer une exception si les paramètres sont invalides
-
+      if (row <= 0 || row >= PacmanGame.DEFAULT_GAME_HEIGHT)
+        throw new ArgumentOutOfRangeException("row");
+      else if (column <= 0 || column >= PacmanGame.DEFAULT_GAME_WIDTH)
+        throw new ArgumentOutOfRangeException("column");
 
 
 
