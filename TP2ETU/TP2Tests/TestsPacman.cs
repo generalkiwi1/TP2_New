@@ -175,8 +175,8 @@ namespace TP2Tests
 
 
       // Validation des résultats
-      Assert.AreEqual(grid.PacmanOriginalPositionRow, pacman.Row);
-      Assert.AreEqual(grid.PacmanOriginalPositionColumn, pacman.Column - 1);
+      Assert.AreEqual(pacman.Row, 1);
+      Assert.AreEqual(pacman.Column, 5);
 
 
       // Clean-up
@@ -201,8 +201,8 @@ namespace TP2Tests
       pacman.Move(Direction.South, grid);
 
       // Validation des résultats
-      Assert.AreEqual(grid.PacmanOriginalPositionRow, pacman.Row - 1);
-      Assert.AreEqual(grid.PacmanOriginalPositionColumn, pacman.Column);
+      Assert.AreEqual(pacman.Row, 2);
+      Assert.AreEqual(pacman.Column, 6);
 
 
       // Clean-up

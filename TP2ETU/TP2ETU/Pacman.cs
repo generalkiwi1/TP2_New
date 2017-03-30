@@ -72,39 +72,39 @@ namespace TP2PROF
     // A COMPLETER MÉTHODE MOVE
     public void Move(Direction direction, Grid grid)
     {
-      if (Column + 1<grid.Width)
+      if (direction==Direction.East)
       {
-        if (grid.PacmanOriginalPositionColumn + 1 != 1 && grid.PacmanOriginalPositionColumn + 1 != 6)
+        if (Column+1<grid.Width)
         {
-          if (direction == Direction.East)
+          if (Column + 1 != 1 && Column + 1 != 6)
           {
             Column++;
           }
         }
       }
-      if (Column - 1 > 0)
+      if (direction==Direction.West)
       {
-        if (grid.PacmanOriginalPositionColumn - 1 != 1 && grid.PacmanOriginalPositionColumn - 1 != 6)
+        if (Column-1>0)
         {
-          if (direction == Direction.West)
+          if (Column - 1 != 1 && Column - 1 != 6)
           {
             Column--;
           }
         }
       }
-      if (Row + 1<grid.Height)
+      if (direction==Direction.South)
       {
-        if (grid.PacmanOriginalPositionRow + 1 != 1 && grid.PacmanOriginalPositionRow + 1 != 6)
-          if (direction == Direction.South)
+        if (Row+1<grid.Height)
+          if (Row + 1 != 1 && Row + 1 != 6)
           {
             Row++;
           }
       }
-      if (Row - 1 > 0)
+      if (direction==Direction.North)
       {
-        if (grid.PacmanOriginalPositionRow - 1 != 1 && grid.PacmanOriginalPositionRow - 1 != 6)
+        if (Row-1>0)
         {
-          if (direction == Direction.North)
+          if (Row - 1 != 1 && Row - 1 != 6)
           {
             Row--;
           }
