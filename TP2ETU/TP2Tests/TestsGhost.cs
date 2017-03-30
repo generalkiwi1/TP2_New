@@ -116,16 +116,14 @@ namespace TP2Tests
     public void TestMoveValid01()
     {
       // Mise en place des données      
-
-
-
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      Ghost ghost = new Ghost(3, 8);
       // Appel de la méthode à tester
-      
-
+      ghost.Move(Direction.West, grid);
       // Validation des résultats
-      
-
-
+      Assert.AreEqual(3, ghost.Row);
+      Assert.AreEqual(7, ghost.Column);
       // Clean-up
     }
     const string VALID_LEVEL_02 = @"
@@ -162,15 +160,14 @@ namespace TP2Tests
     public void TestMoveValid02()
     {
       // Mise en place des données      
-
-
-
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_02);
+      Ghost ghost = new Ghost(8, 10);
       // Appel de la méthode à tester
-      
-
+      ghost.Move(Direction.South, grid);
       // Validation des résultats
-      
-
+      Assert.AreEqual(9, ghost.Row);
+      Assert.AreEqual(10, ghost.Column);
       // Clean-up
     }
   }

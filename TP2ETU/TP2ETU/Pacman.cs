@@ -72,43 +72,21 @@ namespace TP2PROF
     // A COMPLETER MÉTHODE MOVE
     public void Move(Direction direction, Grid grid)
     {
-      if (Column + 1 > 0 && Column + 1 < PacmanGame.DEFAULT_GAME_WIDTH)
+      if (direction == Direction.East && (Column + 1 > 0 && Column + 1 < PacmanGame.DEFAULT_GAME_WIDTH) && grid.GetGridElementAt(Row, 1 + Column) != PacmanElement.Wall)
       {
-        if (grid.PacmanOriginalPositionColumn + 1 != 1 && grid.PacmanOriginalPositionColumn + 1 != 6)
-        {
-          if (direction == Direction.East)
-          {
-            Column++;
-          }
-        }
+        Column++;
       }
-      if (Column - 1 > 0 && Column - 1 < PacmanGame.DEFAULT_GAME_WIDTH)
+      else if (direction == Direction.West && (Column - 1 > 0 && Column - 1 < PacmanGame.DEFAULT_GAME_WIDTH) && grid.GetGridElementAt(Row,-1 + Column) != PacmanElement.Wall )
       {
-        if (grid.PacmanOriginalPositionColumn - 1 != 1 && grid.PacmanOriginalPositionColumn - 1 != 6)
-        {
-          if (direction == Direction.West)
-          {
-            Column--;
-          }
-        }
+        Column--;
       }
-      if (Row + 1 > 0 && Row + 1 < PacmanGame.DEFAULT_GAME_HEIGHT)
+      else if (direction == Direction.South && (Row + 1 > 0 && Row + 1 < PacmanGame.DEFAULT_GAME_HEIGHT) && grid.GetGridElementAt(1 + Row, Column) != PacmanElement.Wall )
       {
-        if (grid.PacmanOriginalPositionRow + 1 != 1 && grid.PacmanOriginalPositionRow + 1 != 6)
-          if (direction == Direction.South)
-          {
-            Row++;
-          }
+        Row++;
       }
-      if (Row - 1 > 0 && Row - 1 < PacmanGame.DEFAULT_GAME_HEIGHT)
+      else if (direction == Direction.North && (Row - 1 > 0 && Row - 1 < PacmanGame.DEFAULT_GAME_HEIGHT) && grid.GetGridElementAt(-1 + Row, Column) != PacmanElement.Wall )
       {
-        if (grid.PacmanOriginalPositionRow - 1 != 1 && grid.PacmanOriginalPositionRow - 1 != 6)
-        {
-          if (direction == Direction.North)
-          {
-            Row--;
-          }
-        }
+        Row--;
       }
     }
     //</AntoineRL>

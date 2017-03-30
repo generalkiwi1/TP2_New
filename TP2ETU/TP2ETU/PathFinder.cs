@@ -29,7 +29,7 @@ namespace TP2PROF
           tableauJeu[i, j] = int.MaxValue;
         }
       }
-      tableauJeu[fromY, fromX] = 0;
+      tableauJeu[fromX, fromY] = 0;
       return tableauJeu;
     }
 
@@ -90,11 +90,11 @@ namespace TP2PROF
       {
         if (fromX-1 > 0)
         {
-          if (aGrid.GetGridElementAt(fromY, fromX - 1) != PacmanElement.Wall)
+          if (aGrid.GetGridElementAt(fromX - 1, fromY ) != PacmanElement.Wall)
           {
-            if (costs[fromY, fromX] + 1 < costs[fromY, fromX - 1])
+            if (costs[fromX , fromY] + 1 < costs[fromX - 1 , fromY])
             {
-              costs[fromY, fromX - 1] = (costs[fromY, fromX]) + 1;
+              costs[fromX - 1 , fromY] = (costs[fromX , fromY]) + 1;
               ComputeCosts(aGrid, fromX-1, fromY, toX, toY, costs);
             }
           }
@@ -102,11 +102,11 @@ namespace TP2PROF
         }
         if (fromY-1>0)
         {
-          if (aGrid.GetGridElementAt(fromY - 1, fromX) != PacmanElement.Wall)
+          if (aGrid.GetGridElementAt(fromX ,  fromY - 1) != PacmanElement.Wall)
           {
-            if (costs[fromY, fromX] + 1 < costs[fromY - 1, fromX])
+            if (costs[fromX , fromY] + 1 < costs[fromX , fromY - 1])
             {
-              costs[fromY - 1, fromX] = (costs[fromY, fromX]) + 1;
+              costs[fromX , fromY - 1] = (costs[fromX , fromY]) + 1;
               ComputeCosts(aGrid, fromX, fromY-1, toX, toY, costs);
             }
           }
@@ -114,11 +114,11 @@ namespace TP2PROF
         }
         if (fromX+1<aGrid.Width)
         {
-          if (aGrid.GetGridElementAt(fromY, fromX + 1) != PacmanElement.Wall)
+          if (aGrid.GetGridElementAt(fromX + 1 , fromY) != PacmanElement.Wall)
           {
-            if (costs[fromY, fromX] + 1 < costs[fromY, fromX + 1])
+            if (costs[fromX , fromY] + 1 < costs[fromX + 1 , fromY])
             {
-              costs[fromY, fromX + 1] = (costs[fromY, fromX]) + 1;
+              costs[fromX + 1 , fromY] = (costs[fromX , fromY]) + 1;
               ComputeCosts(aGrid, fromX+1, fromY, toX, toY, costs);
             }
           }
@@ -126,15 +126,14 @@ namespace TP2PROF
         }
         if (fromY + 1 < aGrid.Height)
         {
-          if (aGrid.GetGridElementAt(fromY + 1, fromX) != PacmanElement.Wall)
+          if (aGrid.GetGridElementAt(fromX , fromY + 1) != PacmanElement.Wall)
           {
-            if (costs[fromY, fromX] + 1 < costs[fromY + 1, fromX])
+            if (costs[fromX , fromY] + 1 < costs[fromX , fromY + 1])
             {
-              costs[fromY + 1, fromX] = (costs[fromY, fromX]) + 1;
+              costs[fromX , fromY + 1] = (costs[fromX , fromY]) + 1;
               ComputeCosts(aGrid,  fromX, fromY+1,toX, toY, costs);
             }
           }
-
         }
       }
     }
@@ -158,53 +157,58 @@ namespace TP2PROF
     public static Direction RecurseFindDirection(int[,] costs, int targetX, int targetY, int fromX, int fromY, Grid aGrid)
     {
       Direction directionCourante = Direction.Undefined;
-      if (costs[targetX, targetY - 1] == ((costs[targetX, targetY] - 1)))
+      if (costs[targetX, targetY - 1] == ((costs[targetX, targetY] - 1)) && targetY - 1 > 0)
       {
         if (costs[targetX, targetY - 1] == costs[fromX, fromY])
-        {
-          directionCourante = Direction.South;
-          return directionCourante;
-        }
-        else
-        {
-          return FindShortestPath(aGrid, targetX, targetY - 1, fromX, fromY);
-        }
-      }
-      else if (costs[targetX - 1, targetY] == ((costs[targetX, targetY] - 1)))
-      {
-        if (costs[targetX - 1, targetY] == costs[fromX, fromY])
         {
           directionCourante = Direction.East;
           return directionCourante;
         }
         else
         {
-          return FindShortestPath(aGrid, targetX - 1, targetY, fromX, fromY);
+          return RecurseFindDirection(costs, targetX, targetY - 1, fromX, fromY, aGrid);
         }
       }
-      else if (costs[targetX, targetY + 1] == ((costs[targetX, targetY] - 1)))
+      else if (costs[targetX - 1, targetY] == ((costs[targetX, targetY] - 1)) && targetX - 1 > 0)
       {
-        if (costs[targetX, targetY + 1] == costs[fromX, fromY])
+        if (costs[targetX - 1, targetY] == costs[fromX, fromY])
         {
-          directionCourante = Direction.North;
+          directionCourante = Direction.South;
           return directionCourante;
         }
         else
         {
-          return FindShortestPath(aGrid, targetX, targetY + 1, fromX, fromY);
+          return RecurseFindDirection(costs, targetX -1, targetY, fromX, fromY, aGrid);
         }
       }
-      else if (costs[targetX + 1, targetY] == ((costs[targetX, targetY] - 1)))
+      else if (costs[targetX, targetY + 1] == ((costs[targetX, targetY] - 1)) && targetY - 1 < PacmanGame.DEFAULT_GAME_WIDTH)
       {
-        if (costs[targetX + 1, targetY] == costs[fromX, fromY])
+        if (costs[targetX, targetY + 1] == costs[fromX, fromY])
         {
           directionCourante = Direction.West;
           return directionCourante;
         }
         else
         {
-          return FindShortestPath(aGrid, targetX + 1, targetY, fromX, fromY);
+          return RecurseFindDirection(costs, targetX, targetY + 1, fromX, fromY, aGrid);
         }
+      }
+      else if (costs[targetX + 1, targetY] == ((costs[targetX, targetY] - 1)) && targetX - 1 < PacmanGame.DEFAULT_GAME_HEIGHT)
+      {
+        if (costs[targetX + 1, targetY] == costs[fromX, fromY])
+        {
+          directionCourante = Direction.North;
+          return directionCourante;
+        }
+        else
+        {
+          return RecurseFindDirection(costs, targetX + 1, targetY, fromX, fromY, aGrid);
+        }
+      }
+      else if (costs[targetX , targetY] == (costs[targetX, targetY]))
+      {
+        directionCourante = Direction.None;
+        return directionCourante;
       }
       return directionCourante;
     }

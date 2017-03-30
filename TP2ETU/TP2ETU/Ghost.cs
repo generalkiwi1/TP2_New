@@ -142,7 +142,7 @@ namespace TP2PROF
 
         }
         else
-          Row = position.X + 1;
+          Column = position.Y + 1;
       }
       else if (direction == Direction.North)
       {
@@ -151,7 +151,7 @@ namespace TP2PROF
 
         }
         else
-          Column = position.Y - 1;
+          Row = position.X - 1;
       }
       else if (direction == Direction.West)
       {
@@ -160,7 +160,7 @@ namespace TP2PROF
 
         }
         else
-          Row = position.X - 1;
+          Column = position.Y - 1;
       }
       else if (direction == Direction.South)
       {
@@ -169,7 +169,7 @@ namespace TP2PROF
 
         }
         else
-          Column = position.Y + 1;
+          Row = position.X + 1;
       }
     }
 
@@ -215,7 +215,12 @@ namespace TP2PROF
       // A compléter 
       if (isSuperPillActive)
       {
-        
+
+      }
+      else
+      {
+        Direction versPacman = PathFinder.FindShortestPath(grid, Row, Column, pacmanPosition.X, pacmanPosition.Y);
+        Move(versPacman, grid);
       }
     }
   }

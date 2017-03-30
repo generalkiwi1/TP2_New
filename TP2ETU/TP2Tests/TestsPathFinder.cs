@@ -91,6 +91,7 @@ namespace TP2Tests
       int toY = 6;
       int[,] costs = new int[PacmanGame.DEFAULT_GAME_HEIGHT, PacmanGame.DEFAULT_GAME_WIDTH];
       // Appel de la méthode à tester
+      aGrid.LoadFromMemory(VALID_LEVEL_01);
       costs = PathFinder.InitCosts(aGrid, fromX, fromY);
       PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
 
@@ -98,60 +99,60 @@ namespace TP2Tests
       // Chemins existants
       if (fromX - 1 > 0)
       {
-        if (aGrid.GetGridElementAt(fromY, fromX - 1) != PacmanElement.Wall)
+        if (aGrid.GetGridElementAt(fromX - 1 , fromY) != PacmanElement.Wall)
         {
-          if (costs[fromY, fromX] + 1 < costs[fromY, fromX - 1])
+          if (costs[fromX , fromY] + 1 < costs[fromX - 1 ,  fromY])
           {
-            Assert.AreEqual((costs[fromY, fromX]) + 1, costs[fromY, fromX - 1]);
+            Assert.AreEqual((costs[fromX , fromY]) + 1, costs[fromX - 1 , fromY]);
           }
         }
       }
       if (fromY - 1 > 0)
       {
-        if (aGrid.GetGridElementAt(fromY-1, fromX) != PacmanElement.Wall)
+        if (aGrid.GetGridElementAt(fromX,  fromY - 1) != PacmanElement.Wall)
         {
-          if (costs[fromY, fromX] + 1 < costs[fromY-1, fromX])
+          if (costs[fromX , fromY] + 1 < costs[fromX , fromY - 1])
           {
-            Assert.AreEqual((costs[fromY, fromX]) + 1, costs[fromY-1, fromX]);
+            Assert.AreEqual((costs[fromX , fromY]) + 1, costs[fromX , fromY - 1]);
           }
         }
       }
       if (fromX + 1 < aGrid.Width)
       {
-        if (aGrid.GetGridElementAt(fromY, fromX+1) != PacmanElement.Wall)
+        if (aGrid.GetGridElementAt(fromX + 1 , fromY) != PacmanElement.Wall)
         {
-          if (costs[fromY, fromX] + 1 < costs[fromY, fromX+1])
+          if (costs[fromX , fromY] + 1 < costs[fromX + 1, fromY ])
           {
-            Assert.AreEqual((costs[fromY, fromX]) + 1, costs[fromY, fromX+1]);
+            Assert.AreEqual((costs[fromX , fromY]) + 1, costs[fromX + 1 , fromY]);
           }
         }
       }
       if (fromY + 1 < aGrid.Height)
       {
-        if (aGrid.GetGridElementAt(fromY+1, fromX) != PacmanElement.Wall)
+        if (aGrid.GetGridElementAt(fromX, fromY + 1) != PacmanElement.Wall)
         {
-          if (costs[fromY, fromX] + 1 < costs[fromY+1, fromX])
+          if (costs[fromX , fromY] + 1 < costs[fromX, fromY + 1])
           {
-            Assert.AreEqual((costs[fromY, fromX]) + 1, costs[fromY+1, fromX]);
+            Assert.AreEqual((costs[fromX , fromY]) + 1, costs[fromX, fromY + 1 ]);
           }
         }
       }
       // Chemins inexistants
-      if (costs[fromY, fromX] + 1 > costs[fromY, fromX - 1])
+      if (costs[fromX , fromY] + 1 > costs[fromX - 1 , fromY])
       {
-        Assert.AreEqual(int.MaxValue, costs[fromY, fromX - 1]);
+        Assert.AreEqual(int.MaxValue, costs[fromX - 1 , fromY]);
       }
-      if (costs[fromY, fromX] + 1 > costs[fromY - 1, fromX])
+      if (costs[fromX , fromY] + 1 > costs[fromX , fromY - 1])
       {
-        Assert.AreEqual(int.MaxValue, costs[fromY - 1, fromX]);
+        Assert.AreEqual(int.MaxValue, costs[fromX , fromY - 1]);
       }
-      if (costs[fromY, fromX] + 1 > costs[fromY, fromX + 1])
+      if (costs[fromX , fromY] + 1 > costs[fromX + 1 , fromY ])
       {
-        Assert.AreEqual(int.MaxValue, costs[fromY, fromX + 1]);
+        Assert.AreEqual(int.MaxValue, costs[fromX + 1 , fromY]);
       }
-      if (costs[fromY, fromX] + 1 > costs[fromY + 1, fromX])
+      if (costs[fromX , fromY] + 1 > costs[fromX , fromY + 1])
       {
-        Assert.AreEqual(int.MaxValue, costs[fromY + 1, fromX]);
+        Assert.AreEqual(int.MaxValue, costs[fromX , fromY + 1]);
       }
 
         ;
