@@ -76,16 +76,22 @@ namespace TP2PROF
       {
         Column++;
       }
+
       else if (direction == Direction.West && (Column - 1 > 0 && Column - 1 < PacmanGame.DEFAULT_GAME_WIDTH) && grid.GetGridElementAt(Row,-1 + Column) != PacmanElement.Wall )
       {
+
         Column--;
       }
+
       else if (direction == Direction.South && (Row + 1 > 0 && Row + 1 < PacmanGame.DEFAULT_GAME_HEIGHT) && grid.GetGridElementAt(1 + Row, Column) != PacmanElement.Wall )
       {
+
         Row++;
       }
+
       else if (direction == Direction.North && (Row - 1 > 0 && Row - 1 < PacmanGame.DEFAULT_GAME_HEIGHT) && grid.GetGridElementAt(-1 + Row, Column) != PacmanElement.Wall )
       {
+
         Row--;
       }
     }
