@@ -84,7 +84,7 @@ namespace TP2PROF
       //costs = InitCosts(aGrid, fromX, fromY);
       if (fromY == toY && fromX == toX)
       {
-        return;
+        costs[fromX, fromY] = 0;
       }
       else
       {

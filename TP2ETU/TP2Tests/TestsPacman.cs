@@ -207,5 +207,6 @@ namespace TP2Tests
 
       // Clean-up
     }
+    //</AntoineRL>
   }
 }
