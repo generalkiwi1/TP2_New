@@ -34,6 +34,7 @@ namespace TP2Tests
 1,1,5,1,1,1,1,1,1,4,1,4,1,1,1,1,1,1,5,1,1;
 1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,1;
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1";
+    
     #region MANDAT1
 
 
@@ -355,6 +356,7 @@ namespace TP2Tests
     }
     //</AntoineRL>
     #endregion
+    // <MikaGauthier>
     #region MANDAT2
     int[,] simpleCostArray1 = new int[,]{
       {int.MaxValue,  int.MaxValue, int.MaxValue, int.MaxValue, int.MaxValue, int.MaxValue, int.MaxValue },
@@ -743,5 +745,6 @@ namespace TP2Tests
     }
 
     #endregion
+    // </MikaGauthier>
   }
 }

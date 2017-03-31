@@ -97,6 +97,8 @@ namespace TP2PROF
       
     } 
 
+    // </MikaGauthier>
+
     // Propriétés SFML pour l'affichage des pastilles et super-pastilles
     const float SMALL_PILL_RADIUS = DEFAULT_GAME_ELEMENT_HEIGHT/8;
     const float SUPER_PILL_RADIUS = 2 * SMALL_PILL_RADIUS;
@@ -121,6 +123,8 @@ namespace TP2PROF
       wallSprite = new Sprite(wallTexture);      
     }
     
+    // <MikaGauthier>
+
     /// <summary>
     /// Charge un fichier de labyrinthe.
     /// </summary>
@@ -173,6 +177,8 @@ namespace TP2PROF
       return retval;
     }
 
+    // </MikaGauthier>
+
     /// <summary>
     /// Met à jour la logique de jeu
     /// </summary>
@@ -208,6 +214,7 @@ namespace TP2PROF
       }
       //</AntoineRL>
 
+      // <MikaGauthier>
 
       // Mise à jour des fantômes
       // A COMPLETER  
@@ -244,21 +251,46 @@ namespace TP2PROF
       {
         if (pacman.Row  == ghosts[i].Row && pacman.Column == ghosts[i].Column && SuperPillActive == false)
         {
-          // partieFinie = EndGameResult.Losse;
+          partieFinie = EndGameResult.Losse;
         }
         else if (pacman.Row == ghosts[i].Row && pacman.Column == ghosts[i].Column && SuperPillActive == true)
         {
+          if (i == 0)
+          {
+            ghosts[i].Column = 10;
+            ghosts[i].Row = 8;
+          }
+          else if (i == 1)
+          {
+            ghosts[i].Column = 10;
+            ghosts[i].Row = 9;
+          }
+          else if (i == 2)
+          {
+            ghosts[i].Column = 9;
+            ghosts[i].Row = 9;
+          }
+          else if (i == 3)
+          {
+            ghosts[i].Column = 11;
+            ghosts[i].Row = 9;
+          }
           partieFinie = EndGameResult.NotFinished;
         }
       }
 
+      // </MikaGauthier>
+      //<AntoineRL>
+
       // Vérification du ramassage d'une pastille
       // A COMPLETER    
-      if(grid.GetGridElementAt(pacman.Row,pacman.Column)==PacmanElement.Pill)
+      if (grid.GetGridElementAt(pacman.Row,pacman.Column)==PacmanElement.Pill)
       {
         grid.SetGridElementAt(pacman.Row, pacman.Column, PacmanElement.None);
       }
 
+      // </AntoineRL>
+      // <MikaGauthier>
 
       // Vérification de l'activation d'un superpill
       // A COMPLETER    
@@ -278,7 +310,8 @@ namespace TP2PROF
 
       // ou si le pacman a été mangé par un fantôme
       return partieFinie;
-      
+
+      // </MikaGauthier>
     }
 
     /// <summary>
