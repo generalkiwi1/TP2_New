@@ -33,11 +33,6 @@ namespace TP2PROF
       return tableauJeu;
     }
 
-
-
-
-
-
     /// <summary>
     /// Détermine le premier déplacement nécessaire pour déplacer un objet de la position (fromX, fromY)
     /// vers la position (toX, toY). 
@@ -58,12 +53,7 @@ namespace TP2PROF
       ComputeCosts(aGrid, fromX, fromY, toX, toY, distances);
       Direction directionChoisit = RecurseFindDirection(distances, toX, toY, fromX, fromY, aGrid);
       return directionChoisit;
-
     }
-
-
-
-
 
     /// <summary>
     /// Calcule le nombre de déplacements requis pour aller de la position (fromX, fromY)
@@ -112,7 +102,7 @@ namespace TP2PROF
           }
           
         }
-        if (fromX+1<aGrid.Width)
+        if (fromX+1<aGrid.Width )
         {
           if (aGrid.GetGridElementAt(fromX + 1 , fromY) != PacmanElement.Wall)
           {
@@ -124,7 +114,7 @@ namespace TP2PROF
           }
           
         }
-        if (fromY + 1 < aGrid.Height)
+        if (fromY + 1 < aGrid.Height )
         {
           if (aGrid.GetGridElementAt(fromX , fromY + 1) != PacmanElement.Wall)
           {

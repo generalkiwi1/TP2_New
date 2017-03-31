@@ -291,9 +291,14 @@ namespace TP2Tests
     [TestMethod]
     public void TestRecurseFindDirection_North01()
     {
-      
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      // Appel de la méthode à tester
+      Direction testNorth = PathFinder.RecurseFindDirection(simpleCostArray1, 1, 3, 2, 3, grid);
+      // Validation des résultats
+      Assert.AreEqual(Direction.North, testNorth);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul du second déplacement vers le nord.
@@ -305,9 +310,14 @@ namespace TP2Tests
     [TestMethod]
     public void TestRecurseFindDirection_North02()
     {
-      
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      // Appel de la méthode à tester
+      Direction testNorth = PathFinder.RecurseFindDirection(simpleCostArray1, 2, 5, 2, 3, grid);
+      // Validation des résultats
+      Assert.AreEqual(Direction.North, testNorth);
+      // Clean-up
     }
 
     /// <summary>
@@ -320,7 +330,14 @@ namespace TP2Tests
     [TestMethod]
     public void TestRecurseFindDirection_North03()
     {
-      
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      // Appel de la méthode à tester
+      Direction testNorth = PathFinder.RecurseFindDirection(simpleCostArray1, 2, 5, 5, 1, grid);
+      // Validation des résultats
+      Assert.AreEqual(Direction.North, testNorth);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul du premier déplacement vers le sud
@@ -332,7 +349,14 @@ namespace TP2Tests
     [TestMethod]
     public void TestRecurseFindDirection_South01()
     {
-      
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      // Appel de la méthode à tester
+      Direction testSouth = PathFinder.RecurseFindDirection(simpleCostArray1, 6, 1, 5, 1, grid);
+      // Validation des résultats
+      Assert.AreEqual(Direction.South, testSouth);
+      // Clean-up
     }
 
     /// <summary>
@@ -345,7 +369,14 @@ namespace TP2Tests
     [TestMethod]
     public void TestRecurseFindDirection_South02()
     {
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      // Appel de la méthode à tester
+      Direction testSouth = PathFinder.RecurseFindDirection(simpleCostArray1, 4, 5, 5, 1, grid);
+      // Validation des résultats
+      Assert.AreEqual(Direction.South, testSouth);
+      // Clean-up
     }
 
     /// <summary>
@@ -358,8 +389,14 @@ namespace TP2Tests
     [TestMethod]
     public void TestRecurseFindDirection_South03()
     {
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      // Appel de la méthode à tester
+      Direction testSouth = PathFinder.RecurseFindDirection(simpleCostArray1, 6, 1, 5, 1, grid);
+      // Validation des résultats
+      Assert.AreEqual(Direction.South, testSouth);
+      // Clean-up
     }
 
     int[,] simpleCostArray2 = new int[,]{
@@ -384,9 +421,14 @@ namespace TP2Tests
     [TestMethod]
     public void TestRecurseFindDirection_West01()
     {
-      
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      // Appel de la méthode à tester
+      Direction testWest = PathFinder.RecurseFindDirection(simpleCostArray2, 8, 2, 8, 3, grid);
+      // Validation des résultats
+      Assert.AreEqual(Direction.West, testWest);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul du premier déplacement vers l'est
@@ -398,11 +440,17 @@ namespace TP2Tests
     [TestMethod]
     public void TestRecurseFindDirection_East01()
     {
-
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      // Appel de la méthode à tester
+      Direction testEst = PathFinder.RecurseFindDirection(simpleCostArray2, 8, 4, 8, 3, grid);
+      // Validation des résultats
+      Assert.AreEqual(Direction.East, testEst);
+      // Clean-up
     }
 
+    // INVERSEMENT DES X ET Y
 
     /// <summary>
     /// Test de calcul d'une direction vers le nord à partir 
@@ -411,9 +459,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToNorth01()
     {
-      
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 20;
+      int ghostY = 2;
+      int pacmanX = 2;
+      int pacmanY = 2;
+      // Appel de la méthode à tester
+      Direction testNorth = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.North, testNorth);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul d'une direction vers le nord à partir 
@@ -422,8 +479,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToNorth02()
     {
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 20;
+      int ghostY = 2;
+      int pacmanX = 2;
+      int pacmanY = 11;
+      // Appel de la méthode à tester
+      Direction testNorth = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.North, testNorth);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul d'une direction vers le nord à partir 
@@ -432,9 +499,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToNorth03()
     {
-      
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 20;
+      int ghostY = 2;
+      int pacmanX = 2;
+      int pacmanY = 18;
+      // Appel de la méthode à tester
+      Direction testNorth = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.North, testNorth);
+      // Clean-up
     }
 
     /// <summary>
@@ -444,9 +520,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToSouth01()
     {
-      
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 2;
+      int ghostY = 2;
+      int pacmanX = 20;
+      int pacmanY = 2;
+      // Appel de la méthode à tester
+      Direction testSouth = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.South, testSouth);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul d'une direction vers le sud à partir 
@@ -455,8 +540,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToSouth02()
     {
-      
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 2;
+      int ghostY = 2;
+      int pacmanX = 20;
+      int pacmanY = 11;
+      // Appel de la méthode à tester
+      Direction testSouth = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.South, testSouth);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul d'une direction vers le sud à partir 
@@ -465,7 +560,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToSouth03()
     {
-      
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 2;
+      int ghostY = 2;
+      int pacmanX = 19;
+      int pacmanY = 18;
+      // Appel de la méthode à tester
+      Direction testSouth = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.South, testSouth);
+      // Clean-up
     }
 
 
@@ -476,9 +582,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToEast01()
     {
-      
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 3;
+      int ghostY = 3;
+      int pacmanX = 3;
+      int pacmanY = 18;
+      // Appel de la méthode à tester
+      Direction testEst = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.East, testEst);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul d'une direction vers l'est à partir 
@@ -487,9 +602,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToEast02()
     {
-
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 3;
+      int ghostY = 3;
+      int pacmanX = 11;
+      int pacmanY = 15;
+      // Appel de la méthode à tester
+      Direction testEst = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.East, testEst);
+      // Clean-up
     }
     /// <summary>
     /// Test de calcul d'une direction vers l'est à partir 
@@ -498,7 +622,18 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToEast03()
     {
-      
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 3;
+      int ghostY = 2;
+      int pacmanX = 3;
+      int pacmanY = 18;
+      // Appel de la méthode à tester
+      Direction testEst = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.East, testEst);
+      // Clean-up
     }
 
     /// <summary>
@@ -508,10 +643,20 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ComplexToWest01()
     {
-
-
+      // Mise en place des données      
+      Grid grid = new Grid();
+      grid.LoadFromMemory(VALID_LEVEL_01);
+      int ghostX = 3;
+      int ghostY = 18;
+      int pacmanX = 3;
+      int pacmanY = 2;
+      // Appel de la méthode à tester
+      Direction testWest = PathFinder.FindShortestPath(grid, ghostX, ghostY, pacmanX, pacmanY);
+      // Validation des résultats
+      Assert.AreEqual(Direction.West, testWest);
+      // Clean-up
     }
-    
+
     #endregion
   }
 }

@@ -12,11 +12,12 @@ namespace TP2PROF
    public enum Direction
   {
     East,
-    None,
     North,
     South,
-    Undefined,
-    West
+    West,
+    None,
+    Undefined
+
   }
   //</AntoineRL>
 }

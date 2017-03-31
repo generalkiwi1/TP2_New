@@ -7,7 +7,6 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 using SFML.Audio;
-using System.Threading;
 namespace TP2PROF
 {
   public class PacmanGame
@@ -65,6 +64,13 @@ namespace TP2PROF
     /// </summary>
     private const int SUPERPILL_ACTIVATION_TIME = 5;
 
+    // ????????????
+    private DateTime superPillActivationTime = new DateTime(SUPERPILL_ACTIVATION_TIME);
+
+    /// <summary>
+    /// Si la SuperPill est active ou non
+    /// </summary>
+    private bool isSuperPillActive = false;
 
     /// <summary>
     /// Accesseur permettant de savoir si une super pastille est active
@@ -73,10 +79,16 @@ namespace TP2PROF
     // A COMPLETER
     public bool SuperPillActive
     {
-      get
-      ;
+      get 
+      {
+        return isSuperPillActive; 
+      }
+      
       set
-      ;
+      { 
+        isSuperPillActive = value; 
+      }
+      
     } 
 
     // Propriétés SFML pour l'affichage des pastilles et super-pastilles
@@ -164,6 +176,8 @@ namespace TP2PROF
     /// mangé par un fantôme</returns>
     public EndGameResult Update(Keyboard.Key key)
     {
+      EndGameResult partieFinie = EndGameResult.NotFinished;
+
       //<AntoineRL>
       // Déplacement du joueur
       if (key == Keyboard.Key.Left)
@@ -192,18 +206,24 @@ namespace TP2PROF
       // Mise à jour des fantômes
       // A COMPLETER  
       // Sleep a second 
-      
-
       for (int i = 0; i<NB_GHOSTS; i++)
       {
-        ghosts[i].Update(grid, new Vector2i(pacman.Row, pacman.Column), false);
+        ghosts[i].Update(grid, new Vector2i(pacman.Row, pacman.Column), SuperPillActive);
       }
 
       // Gestion des collisions avec le pacman
       // A COMPLETER    
-
-
-
+      for (int i = 0; i < NB_GHOSTS; i++)
+      {
+        if (pacman.Row  == ghosts[i].Row && pacman.Column == ghosts[i].Column && SuperPillActive == false)
+        {
+          // partieFinie = EndGameResult.Losse;
+        }
+        else if (pacman.Row == ghosts[i].Row && pacman.Column == ghosts[i].Column && SuperPillActive == true)
+        {
+          partieFinie = EndGameResult.NotFinished;
+        }
+      }
 
       // Vérification du ramassage d'une pastille
       // A COMPLETER    
@@ -213,15 +233,17 @@ namespace TP2PROF
 
       // Vérification de l'activation d'un superpill
       // A COMPLETER    
-
-
-
-
+      if (grid.GetGridElementAt(pacman.Row,pacman.Column) == PacmanElement.SuperPill)
+      {
+        SuperPillActive = true;
+        grid.SetGridElementAt(pacman.Row, pacman.Column, PacmanElement.None);
+      }
 
       // Validations de fin de partie
       // A COMPLETER car il faut que la partie finisse s'il ne reste plus de pastille
       // ou si le pacman a été mangé par un fantôme
-      return EndGameResult.NotFinished;
+      return partieFinie;
+      
     }
 
     /// <summary>
