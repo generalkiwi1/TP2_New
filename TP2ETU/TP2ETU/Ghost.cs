@@ -219,27 +219,9 @@ namespace TP2PROF
       // A compléter 
       if (isSuperPillActive)
       {
-        // Changement d'état
-        IsWeak = isSuperPillActive;
-
-        Direction versPacman = Direction.None;
-
-        if (grid.GetGridElementAt(Row, Column + 1) != PacmanElement.Wall && versPacman == Direction.None)
-        {
-          versPacman = Direction.East;
-        }
-        else if (grid.GetGridElementAt(Row - 1, Column) != PacmanElement.Wall && versPacman == Direction.None)
-        {
-          versPacman = Direction.North;
-        }
-        else if (grid.GetGridElementAt(Row + 1, Column) != PacmanElement.Wall && versPacman == Direction.None)
-        {
-          versPacman = Direction.South;
-        }
-        else if (grid.GetGridElementAt(Row, Column - 1) != PacmanElement.Wall && versPacman == Direction.None)
-        {
-          versPacman = Direction.West;
-        }
+        
+        // Going random
+        Direction versPacman = (Direction) rnd.Next(0,4);
 
         Move(versPacman, grid);
         
@@ -253,5 +235,6 @@ namespace TP2PROF
         Move(versPacman, grid);
       }
     }
+    // <MikaGauthier>
   }
 }

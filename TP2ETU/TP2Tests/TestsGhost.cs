@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TP2PROF;
 namespace TP2Tests
 {
+  // <MikaGauthier>
   /// <summary>
   /// Description résumée pour TestsPacman
   /// </summary>
@@ -170,5 +171,5 @@ namespace TP2Tests
       Assert.AreEqual(10, ghost.Column);
       // Clean-up
     }
-  }
+  } // </MikaGauthier>
 }
