@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.System;
+using System.Threading;
 namespace TP2PROF
 {
   // <MikaGauthier>
   public class Ghost
-  {
+  { 
+
     /// <summary>
     /// Position du fantôme
     /// </summary>
@@ -127,6 +129,8 @@ namespace TP2PROF
       ghostSprite.Origin = new Vector2f(ghostTextureNormal.Size.X / 2, ghostTextureNormal.Size.Y / 2);
     }
 
+
+
     /// <summary>
     /// Déplace le fantôme selon une direction donnée.
     /// </summary>
@@ -215,10 +219,36 @@ namespace TP2PROF
       // A compléter 
       if (isSuperPillActive)
       {
+        // Changement d'état
+        IsWeak = isSuperPillActive;
 
+        Direction versPacman = Direction.None;
+
+        if (grid.GetGridElementAt(Row, Column + 1) != PacmanElement.Wall && versPacman == Direction.None)
+        {
+          versPacman = Direction.East;
+        }
+        else if (grid.GetGridElementAt(Row - 1, Column) != PacmanElement.Wall && versPacman == Direction.None)
+        {
+          versPacman = Direction.North;
+        }
+        else if (grid.GetGridElementAt(Row + 1, Column) != PacmanElement.Wall && versPacman == Direction.None)
+        {
+          versPacman = Direction.South;
+        }
+        else if (grid.GetGridElementAt(Row, Column - 1) != PacmanElement.Wall && versPacman == Direction.None)
+        {
+          versPacman = Direction.West;
+        }
+
+        Move(versPacman, grid);
+        
       }
       else
       {
+        // Changement d'état
+        IsWeak = isSuperPillActive;
+
         Direction versPacman = PathFinder.FindShortestPath(grid, Row, Column, pacmanPosition.X, pacmanPosition.Y);
         Move(versPacman, grid);
       }
