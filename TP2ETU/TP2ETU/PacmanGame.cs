@@ -7,6 +7,7 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 using SFML.Audio;
+using System.Threading;
 namespace TP2PROF
 {
   public class PacmanGame
@@ -72,8 +73,10 @@ namespace TP2PROF
     // A COMPLETER
     public bool SuperPillActive
     {
-      get;
-      set;
+      get
+      ;
+      set
+      ;
     } 
 
     // Propriétés SFML pour l'affichage des pastilles et super-pastilles
@@ -147,8 +150,6 @@ namespace TP2PROF
               }
             }
           }
-           
-
         }
       }
       return retval;
@@ -164,19 +165,16 @@ namespace TP2PROF
     public EndGameResult Update(Keyboard.Key key)
     {
       //<AntoineRL>
-      Pacman pacman = new Pacman(10, 10);
-      Grid grid = new Grid();
-
       // Déplacement du joueur
       if (key == Keyboard.Key.Left)
       {
         // A COMPLETER 
-        pacman.Move(Direction.East, grid);
+        pacman.Move(Direction.West, grid);
       }
       else if (key == Keyboard.Key.Right)
       {
         // A COMPLETER
-        pacman.Move(Direction.West, grid);
+        pacman.Move(Direction.East, grid);
       }
       else if (key == Keyboard.Key.Up)
       {
@@ -192,13 +190,14 @@ namespace TP2PROF
 
 
       // Mise à jour des fantômes
-      // A COMPLETER    
-      //for (int i = 0; i < ghosts.Length; i++)
-     // {
-        // ghosts[i].Update(grid,pacmanPosition, isSuperPillActive);
-     // }
+      // A COMPLETER  
+      // Sleep a second 
+      
 
-
+      for (int i = 0; i<NB_GHOSTS; i++)
+      {
+        ghosts[i].Update(grid, new Vector2i(pacman.Row, pacman.Column), false);
+      }
 
       // Gestion des collisions avec le pacman
       // A COMPLETER    
@@ -217,6 +216,7 @@ namespace TP2PROF
 
       // Vérification de l'activation d'un superpill
       // A COMPLETER    
+
 
 
 

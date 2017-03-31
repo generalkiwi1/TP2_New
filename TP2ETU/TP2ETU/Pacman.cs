@@ -72,43 +72,27 @@ namespace TP2PROF
     // A COMPLETER MÉTHODE MOVE
     public void Move(Direction direction, Grid grid)
     {
-      if (direction==Direction.East)
+      if (direction == Direction.East && (Column + 1 > 0 && Column + 1 < PacmanGame.DEFAULT_GAME_WIDTH) && grid.GetGridElementAt(Row, 1 + Column) != PacmanElement.Wall)
       {
-        if (Column+1<grid.Width)
-        {
-          if (Column + 1 != 1 && Column + 1 != 6)
-          {
-            Column++;
-          }
-        }
+        Column++;
       }
-      if (direction==Direction.West)
+
+      else if (direction == Direction.West && (Column - 1 > 0 && Column - 1 < PacmanGame.DEFAULT_GAME_WIDTH) && grid.GetGridElementAt(Row,-1 + Column) != PacmanElement.Wall )
       {
-        if (Column-1>0)
-        {
-          if (Column - 1 != 1 && Column - 1 != 6)
-          {
-            Column--;
-          }
-        }
+
+        Column--;
       }
-      if (direction==Direction.South)
+
+      else if (direction == Direction.South && (Row + 1 > 0 && Row + 1 < PacmanGame.DEFAULT_GAME_HEIGHT) && grid.GetGridElementAt(1 + Row, Column) != PacmanElement.Wall )
       {
-        if (Row+1<grid.Height)
-          if (Row + 1 != 1 && Row + 1 != 6)
-          {
-            Row++;
-          }
+
+        Row++;
       }
-      if (direction==Direction.North)
+
+      else if (direction == Direction.North && (Row - 1 > 0 && Row - 1 < PacmanGame.DEFAULT_GAME_HEIGHT) && grid.GetGridElementAt(-1 + Row, Column) != PacmanElement.Wall )
       {
-        if (Row-1>0)
-        {
-          if (Row - 1 != 1 && Row - 1 != 6)
-          {
-            Row--;
-          }
-        }
+
+        Row--;
       }
     }
     //</AntoineRL>
