@@ -89,7 +89,7 @@ namespace TP2Tests
       int fromY = 4;
       int toX = 3;
       int toY = 6;
-      int[,] costs = new int[PacmanGame.DEFAULT_GAME_HEIGHT, PacmanGame.DEFAULT_GAME_WIDTH];
+      int[,] costs = new int[aGrid.Height, aGrid.Width];
       // Appel de la méthode à tester
       aGrid.LoadFromMemory(VALID_LEVEL_01);
       costs = PathFinder.InitCosts(aGrid, fromX, fromY);
@@ -157,7 +157,7 @@ namespace TP2Tests
 
         ;
     }
-    //</AntoineRL>
+    
 
     /// <summary>
     /// Test de calcul d'une direction lorsque le point de départ
@@ -167,11 +167,32 @@ namespace TP2Tests
     public void TestFindPath_NoDisplacement()
     {
       // Mise en place des données
-      
+      Grid aGrid = new Grid();
+      int fromX = 2;
+      int fromY = 5;
+      int toX = 2;
+      int toY = 5;
+      int[,] costs = new int[aGrid.Height, aGrid.Width];
       // Appel de la méthode à tester
+      aGrid.LoadFromMemory(VALID_LEVEL_01);
+      costs = PathFinder.InitCosts(aGrid, fromX, fromY);
+      PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
 
       // Validations
-
+      for(int i=0; i<costs.GetLength(0);i++)
+      {
+        for(int j=0; j<costs.GetLength(1);j++)
+        {
+         if(i==fromX && j==fromY)
+         {
+            Assert.AreEqual(0, costs[fromX, fromY]);
+         }
+         else
+         {
+            Assert.AreEqual(int.MaxValue, costs[i, j]);
+         }
+        } 
+      }
       // Cleanup
     }
 
@@ -183,11 +204,22 @@ namespace TP2Tests
     public void TestFindPath_ToEast()
     {
       // Mise en place des données
-
+      Grid aGrid = new Grid();
+      int fromX = 1;
+      int fromY = 3;
+      int toX = 1;
+      int toY = 4;
+      int[,] costs = new int[aGrid.Height, aGrid.Width];
       // Appel de la méthode à tester
+      aGrid.LoadFromMemory(VALID_LEVEL_01);
+      costs = PathFinder.InitCosts(aGrid, fromX, fromY);
+      PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
 
       // Validations
-
+      if (costs[fromX, fromY] + 1 < costs[toX, toY])
+      {
+        Assert.AreEqual(costs[fromX, fromY] + 1, costs[toX, toY]);
+      }
       // Cleanup      
 
     }
@@ -200,11 +232,21 @@ namespace TP2Tests
     public void TestFindPath_ToWest()
     {
       // Mise en place des données
-
+      Grid aGrid = new Grid();
+      int fromX = 1;
+      int fromY = 4;
+      int toX = 1;
+      int toY = 3;
+      int[,] costs = new int[aGrid.Height, aGrid.Width];
       // Appel de la méthode à tester
-
+      aGrid.LoadFromMemory(VALID_LEVEL_01);
+      costs = PathFinder.InitCosts(aGrid, fromX, fromY);
+      PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
       // Validations
-
+      if (costs[fromX, fromY] + 1 < costs[toX, toY])
+      {
+        Assert.AreEqual(costs[fromX, fromY] + 1, costs[toX, toY]);
+      }
       // Cleanup
     }
 
@@ -216,11 +258,23 @@ namespace TP2Tests
     public void TestFindPath_ToNorth()
     {
       // Mise en place des données
+      Grid aGrid = new Grid();
+      int fromX = 2;
+      int fromY = 5;
+      int toX = 1;
+      int toY = 5;
+      int[,] costs = new int[aGrid.Height, aGrid.Width];
 
       // Appel de la méthode à tester
+      aGrid.LoadFromMemory(VALID_LEVEL_01);
+      costs = PathFinder.InitCosts(aGrid, fromX, fromY);
+      PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
 
       // Validations
-
+      if (costs[fromX, fromY] + 1 < costs[toX, toY])
+      {
+        Assert.AreEqual(costs[fromX, fromY] + 1, costs[toX, toY]);
+      }
       // Cleanup
     }
     /// <summary>
@@ -231,11 +285,23 @@ namespace TP2Tests
     public void TestFindPath_ToSouth()
     {
       // Mise en place des données
+      Grid aGrid = new Grid();
+      int fromX = 1;
+      int fromY = 5;
+      int toX = 2;
+      int toY = 5;
+      int[,] costs = new int[aGrid.Height, aGrid.Width];
 
       // Appel de la méthode à tester
+      aGrid.LoadFromMemory(VALID_LEVEL_01);
+      costs = PathFinder.InitCosts(aGrid, fromX, fromY);
+      PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
 
       // Validations
-
+      if (costs[fromX, fromY] + 1 < costs[toX, toY])
+      {
+        Assert.AreEqual(costs[fromX, fromY] + 1, costs[toX, toY]);
+      }
       // Cleanup
     }
     
@@ -248,11 +314,20 @@ namespace TP2Tests
     public void TestFindPath_ImpossibleToWall()
     {
       // Mise en place des données
+      Grid aGrid = new Grid();
+      int fromX = 1;
+      int fromY = 4;
+      int toX = 2;
+      int toY = 4;
+      int[,] costs = new int[aGrid.Height, aGrid.Width];
 
       // Appel de la méthode à tester
+      aGrid.LoadFromMemory(VALID_LEVEL_01);
+      costs = PathFinder.InitCosts(aGrid, fromX, fromY);
+      PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
 
       // Validations
-
+      Assert.AreEqual(int.MaxValue, costs[toX, toY]);
       // Cleanup
     }
 
@@ -262,13 +337,23 @@ namespace TP2Tests
     [TestMethod]
     public void TestFindPath_ImpossibleFromWall()
     {      // Mise en place des données
+      Grid aGrid = new Grid();
+      int fromX = 2;
+      int fromY = 4;
+      int toX = 1;
+      int toY = 4;
+      int[,] costs = new int[aGrid.Height, aGrid.Width];
 
       // Appel de la méthode à tester
+      aGrid.LoadFromMemory(VALID_LEVEL_01);
+      costs = PathFinder.InitCosts(aGrid, fromX, fromY);
+      PathFinder.ComputeCosts(aGrid, fromX, fromY, toX, toY, costs);
 
       // Validations
-
+      Assert.AreEqual(0, costs[fromX, fromY]);
       // Cleanup
     }
+    //</AntoineRL>
     #endregion
     #region MANDAT2
     int[,] simpleCostArray1 = new int[,]{

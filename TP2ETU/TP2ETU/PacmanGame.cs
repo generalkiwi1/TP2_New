@@ -227,7 +227,10 @@ namespace TP2PROF
 
       // Vérification du ramassage d'une pastille
       // A COMPLETER    
-
+      if(grid.GetGridElementAt(pacman.Row,pacman.Column)==PacmanElement.Pill)
+      {
+        grid.SetGridElementAt(pacman.Row, pacman.Column, PacmanElement.None);
+      }
 
 
 
@@ -256,14 +259,14 @@ namespace TP2PROF
     {
       Grid grid = new Grid();
       int compteurPills = 0;
-      for (int i = 0; i < PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT; i++)
+      for (int i = 0; i < PacmanGame.DEFAULT_GAME_HEIGHT; i++)
       {
-        for (int j = 0; j < PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH; j++)
+        for (int j = 0; j < PacmanGame.DEFAULT_GAME_WIDTH; j++)
         {
-         // if ()
-        //  {
-        //    compteurPills++;
-         // }
+          if (grid.GetGridElementAt(i,j)==PacmanElement.Pill)
+          {
+            compteurPills++;
+          }
         }
       }
       return compteurPills;
