@@ -49,6 +49,16 @@ namespace TP2PROF
           game.Draw(window);
           window.Display();
         }
+        // <MikaGauthier>
+        if (game.Update(lastKeyPressed) == EndGameResult.Win)
+        {
+          System.Windows.Forms.MessageBox.Show("Vous avez gagné", "Bravo !!!");
+        }
+        else if (game.Update(lastKeyPressed) == EndGameResult.Losse)
+        {
+          System.Windows.Forms.MessageBox.Show("Vous avez perdu", "Et zut !!!");
+        }
+        // </MikaGauthier>
       }
       else
       {
